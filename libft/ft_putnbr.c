@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/11/05 16:26:05 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/11/05 16:29:10 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+void	ft_putnbr(int nb)
 {
-	int		i;
-	int		fd;
-	char	**map;
-
-	if (ac == 2)
+	if (nb == -2147483648)
+		return (ft_putstr("-2147483648"));
+	if (nb < 0)
 	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
+		ft_putchar('-');
+		nb = -nb;
 	}
+	if (nb > 9)
+		ft_putnbr(nb / 10);
+	ft_putchar(nb % 10 + '0');
 }

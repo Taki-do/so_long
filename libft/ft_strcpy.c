@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taomalbe <taomalbe@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/25 14:15:30 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/10/25 16:35:04 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+char	*ft_strcpy(char *dest, const char *src)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	int	i;
 
-	if (ac == 2)
+	i = 0;
+	while (src[i])
 	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
+		dest[i] = src[i];
+		i++;
 	}
+	dest[i] = '\0';
+	return (dest);
 }

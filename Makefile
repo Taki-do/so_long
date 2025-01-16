@@ -1,35 +1,32 @@
 NAME = so_long
-
-# Dossiers
-SRC_DIR = src
+PATH_LIBFT = libft/
+LIBFT_LIB = $(PATH_LIBFT)libft.a
+PATH_SRC = src
 INC_DIR = include
 OBJ_DIR = obj
-
-# Fichiers sources
-SRCS = $(SRC_DIR)/moving.c
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-
-# Compilation
+SRCS = $(PATH_SRC)/main.c $(PATH_SRC)/read_map.c $(PATH_SRC)/mlx_tests.c 
+OBJS = $(SRCS:.c=.o)
 CC = gcc
-CFLAGS =  -I$(INC_DIR)
-
-# Bibliothèques MiniLibX
+FLAGS =  -I$(INC_DIR)
 MLX_FLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
-# Règles
-all: $(NAME)
+all: $(LIBFT_LIB) $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(MLX_FLAGS) $(LIBFT_LIB) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I/usr/include -c $< -o $@
+$(LIBFT_LIB):
+	make -C $(PATH_LIBFT)
+
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
+	make -C $(PATH_LIBFT) clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C $(PATH_LIBFT) fclean
 
 re: fclean all

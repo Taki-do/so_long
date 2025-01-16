@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/29 12:43:12 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/11/05 12:21:22 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	size_t				i;
+	const unsigned char	*cmp1;
+	const unsigned char	*cmp2;
 
-	if (ac == 2)
-	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
-	}
+	if (n == 0)
+		return (0);
+	i = 0;
+	cmp1 = (const unsigned char *)s1;
+	cmp2 = (const unsigned char *)s2;
+	while (cmp1[i] == cmp2[i] && i < n - 1)
+		i++;
+	return (cmp1[i] - cmp2[i]);
 }

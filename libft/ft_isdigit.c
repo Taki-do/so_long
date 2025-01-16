@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/25 18:50:01 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/12/14 11:50:37 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+int	ft_isdigit(int c)
 {
-	int		i;
-	int		fd;
-	char	**map;
-
-	if (ac == 2)
-	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
-	}
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taomalbe <taomalbe@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/25 20:13:08 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/10/28 11:35:19 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	unsigned char	*str;
+	size_t			i;
 
-	if (ac == 2)
+	i = 0;
+	str = (unsigned char *)s;
+	while (i < n)
 	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
+		str[i] = (unsigned char)c;
+		i++;
 	}
+	return (s);
 }

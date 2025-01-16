@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taomalbe <taomalbe@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/30 10:36:11 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/10/30 11:58:31 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	t_list	*head;
 
-	if (ac == 2)
+	if (!lst || !new)
+		return ;
+	if (!*lst)
 	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
+		*lst = new;
+		return ;
 	}
+	head = *lst;
+	while (head->next)
+		head = head->next;
+	head->next = new;
 }

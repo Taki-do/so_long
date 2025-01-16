@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/29 09:12:12 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/11/05 13:24:20 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	size_t				i;
+	unsigned char		*dest_cpy;
+	const unsigned char	*src_cpy;
 
-	if (ac == 2)
+	if (dest == src)
+		return (dest);
+	i = 0;
+	dest_cpy = (unsigned char *)dest;
+	src_cpy = (const unsigned char *)src;
+	while (i < n)
 	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
+		dest_cpy[i] = src_cpy[i];
+		i++;
 	}
+	return (dest);
 }

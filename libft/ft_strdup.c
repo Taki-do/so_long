@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taomalbe <taomalbe@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/25 16:50:30 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/10/25 16:58:52 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+char	*ft_strdup(const char *s)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	int		s_len;
+	char	*dup;
 
-	if (ac == 2)
-	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
-	}
+	s_len = ft_strlen(s);
+	dup = (char *)malloc((s_len + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
+	dup = ft_strcpy(dup, s);
+	return (dup);
 }

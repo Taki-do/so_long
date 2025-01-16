@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: taomalbe <taomalbe@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/29 12:30:56 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/10/29 12:38:53 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	size_t				i;
+	const unsigned char	*chr;
 
-	if (ac == 2)
+	i = 0;
+	chr = (const unsigned char *)s;
+	while (i < n)
 	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
+		if (chr[i] == (unsigned char)c)
+			return ((void *)&chr[i]);
+		i++;
 	}
+	return (NULL);
 }

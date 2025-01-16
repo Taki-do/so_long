@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 12:25:41 by taomalbe         ###   ########.fr       */
+/*   Created: 2024/10/29 14:06:31 by taomalbe          #+#    #+#             */
+/*   Updated: 2024/11/05 12:57:03 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/so_long.h"
+#include "libft.h"
 
-int	main(int ac, char *av[])
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int		i;
-	int		fd;
-	char	**map;
+	size_t			full_len;
+	unsigned char	*calloc;
 
-	if (ac == 2)
-	{
-		i = 0;
-		map = read_map(av[1]);
-		mlx_start(map);
-		//while (map[i])
-		//	ft_printf("%s", map[i++]);
-	}
+	if (!nmemb || !size)
+		return ((void *)malloc(0));
+	full_len = nmemb * size;
+	if (size != 0 && full_len / size != nmemb)
+		return (NULL);
+	calloc = (unsigned char *)malloc(full_len);
+	if (!calloc)
+		return (NULL);
+	ft_bzero(calloc, full_len);
+	return ((void *)calloc);
 }
