@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mlx_tests.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/20 17:09:52 by taomalbe          #+#    #+#             */
+/*   Updated: 2025/01/20 20:22:58 by taomalbe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -8,72 +20,44 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	take_input(int keycode, t_vars *vars)
+int	take_input(int keycode, t_data *data)
 {
-	if (keycode == 65307)
+	int			x;
+	int			y;
+
+	x = data->player_x;
+	y = data->player_y;
+	if (keycode == 119)
+		y--;
+	else if (keycode == 97)
+		x--;
+	else if (keycode == 115)
+		y++;
+	else if (keycode == 100)
+		x++;
+	else if (keycode == 65307)
 	{
-		printf("The %d key (ESC) has been pressed\n", keycode);
-		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_display(vars->mlx);
-		free(vars->mlx);
-		exit(1);
+		mlx_destroy_window(data->mlx, data->win);
+		exit(0);
 	}
-	if (keycode = 97)
+	if (keycode == 119 || keycode == 97 || keycode == 115 || keycode == 100)
 	{
-		printf("The key A has been pressed\n");
+		data->count++;
+		ft_printf("Moves done : %d\n", data->count);
 	}
-	printf("The %d key has been pressed\n", keycode);
+	if (data->map[y][x] != '1')
+	{
+		data->map[y][x] = 'P';
+		data->map[data->player_y][data->player_x] = '0';
+		data->player_x = x;
+		data->player_y = y;
+		render_map(data);
+	}
 	return (0);
 }
-
-void	render_map(t_data *img, t_vars *vars)
+int	close_window(t_data *data)
 {
-	int	x;
-	int	y;
-	int	height;
-	int	width;
-
-	y = 0;
-	while (img->map[y])
-	{
-		x = 0;
-		while (img->map[y][x])
-		{
-			if (img->map[y][x] == '1')
-			{
-				width = x * 64;
-				height = y * 64;
-				mlx_xpm_file_to_image(vars->mlx, "azfal.xpm", &width, &height);
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-int	mlx_start(char **map)
-{
-	t_vars 	vars;
-	t_data	img;
-
-	//launch X server
-	vars.mlx = mlx_init();
-	//create a window and name it
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Nice Window here!");
-	//instantiate image on the window
-	img.img = mlx_new_image(vars.mlx, 1920, 1080);
-	//get all the info about img created on the windows;
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
-	img.map = map;
-	//adjust where to put pixels
-	my_mlx_pixel_put(&img, 50, 50, 0x0000FF00);
-	//put pixels
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	//take keys
-	mlx_key_hook(vars.win, take_input, &vars);
-	//run till the end
-	render_map(&img, &vars);
-	mlx_loop(vars.mlx);
-	free(vars.mlx);
-	free(vars.win);
+	mlx_destroy_window(data->mlx, data->win);
+	exit(0);
+	return (0);
 }

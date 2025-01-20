@@ -4,10 +4,10 @@ LIBFT_LIB = $(PATH_LIBFT)libft.a
 PATH_SRC = src
 INC_DIR = include
 OBJ_DIR = obj
-SRCS = $(PATH_SRC)/main.c $(PATH_SRC)/read_map.c $(PATH_SRC)/mlx_tests.c 
+SRCS = $(PATH_SRC)/main.c $(PATH_SRC)/map.c $(PATH_SRC)/mlx_tests.c $(PATH_SRC)/utils.c $(PATH_SRC)/render.c
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-FLAGS =  -I$(INC_DIR)
+FLAGS =  -I$(INC_DIR) -Wall -Wextra -Werror
 MLX_FLAGS = -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
 all: $(LIBFT_LIB) $(NAME)
