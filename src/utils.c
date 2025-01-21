@@ -6,20 +6,21 @@
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:06:11 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/20 12:23:52 by taomalbe         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:32:46 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 
-int	check_if_elements(int player, int collectible, int exit)
+int	check_if_elements(int player, int collectible, int exit, t_data *data)
 {
-	if ((player != 1) || (collectible != 1) || (exit != 1))
+	if ((player != 1) || (collectible < 1) || (exit != 1))
 		return (0);
+	data->collectible = collectible;
 	return (1);
 }
 
-int	validate_elements(char **map)
+int	validate_elements(char **map, t_data *data)
 {
 	int	i;
 	int	j;
@@ -44,5 +45,5 @@ int	validate_elements(char **map)
 				exit++;
 		}
 	}
-	return (check_if_elements(player, collectible, exit));
+	return (check_if_elements(player, collectible, exit, data));
 }

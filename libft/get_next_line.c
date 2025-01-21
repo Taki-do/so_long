@@ -6,7 +6,7 @@
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:54:35 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/16 11:42:51 by taomalbe         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:08:09 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,6 @@ void	ft_z(void *s, size_t n)
 		str[i] = 0;
 		i++;
 	}
-}
-
-char	*ft_strdup(const char *s)
-{
-	int		i;
-	int		s_len;
-	char	*dup;
-
-	i = 0;
-	s_len = ft_strlen(s);
-	dup = (char *)malloc((s_len + 1) * sizeof(char));
-	if (!dup)
-		return (NULL);
-	while (s[i])
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
 }
 
 char	*ft_return_ln(char buf[BUFFER_SIZE + 1], char *line)

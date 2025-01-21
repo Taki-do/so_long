@@ -6,7 +6,7 @@
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:31:16 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/20 18:46:51 by taomalbe         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:11:13 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_first_line_border(char **map)
 {
 	int	i;
-	
+
 	i = 0;
 	while (map[0][i])
 	{
@@ -37,7 +37,7 @@ int	borders_only_walls(char **map)
 	int	j;
 
 	j = 1;
-	while (map[j + 1]) //Check after first line
+	while (map[j + 1])
 	{
 		if (map[j][0] != '1')
 			return (0);
@@ -49,7 +49,7 @@ int	borders_only_walls(char **map)
 		j++;
 	}
 	i = 0;
-	while (map[j][i]) //Check last line borders
+	while (map[j][i])
 	{
 		if (map[0][i] != '1')
 			return (0);
@@ -65,7 +65,7 @@ int	validate_borders(char **map)
 
 	i = 1;
 	size = ft_strlen(map[0]);
-	while (map[i]) //Check if same size for all lines
+	while (map[i])
 	{
 		if (map[i + 1] == NULL)
 			size--;
@@ -80,13 +80,19 @@ int	validate_borders(char **map)
 
 int	map_size(char *name)
 {
-	int	fd;
-	int	size;
+	int		fd;
+	int		size;
+	char	*line;
 
 	size = 0;
-	fd = open(name, O_RDONLY);
-	while (get_next_line(fd))
+	fd = open(name, O_RDWR);
+	line = get_next_line(fd);
+	while (line)
+	{
 		size++;
+		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (size);
 }
@@ -100,7 +106,7 @@ char	**read_map(char *name, t_data *data)
 
 	i = 0;
 	data->size = map_size(name);
-	fd = open(name, O_RDONLY);
+	fd = open(name, O_RDWR);
 	if (fd == -1)
 		return (NULL);
 	map = (char **)malloc((data->size + 1) * sizeof(char *));
@@ -114,7 +120,8 @@ char	**read_map(char *name, t_data *data)
 	}
 	map[i] = NULL;
 	close(fd);
-	if (!validate_borders(map) || !validate_elements(map))
-		return (NULL);
+	if (!validate_borders(map) || !validate_elements(map, data)
+		|| (data->size == ((int)ft_strlen(map[0]) - 1)))
+		return (free_map(map), NULL);
 	return (map);
 }

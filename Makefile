@@ -4,7 +4,8 @@ LIBFT_LIB = $(PATH_LIBFT)libft.a
 PATH_SRC = src
 INC_DIR = include
 OBJ_DIR = obj
-SRCS = $(PATH_SRC)/main.c $(PATH_SRC)/map.c $(PATH_SRC)/mlx_tests.c $(PATH_SRC)/utils.c $(PATH_SRC)/render.c
+SRCS = $(PATH_SRC)/main.c $(PATH_SRC)/map.c $(PATH_SRC)/mlx_input.c $(PATH_SRC)/utils.c $(PATH_SRC)/render.c \
+		$(PATH_SRC)/findpath.c
 OBJS = $(SRCS:.c=.o)
 CC = gcc
 FLAGS =  -I$(INC_DIR) -Wall -Wextra -Werror
