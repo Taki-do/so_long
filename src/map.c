@@ -6,7 +6,7 @@
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 11:31:16 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/21 20:11:13 by taomalbe         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:57:55 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	**read_map(char *name, t_data *data)
 	i = 0;
 	data->size = map_size(name);
 	fd = open(name, O_RDWR);
-	if (fd == -1)
+	if (fd == -1 || !data->size)
 		return (NULL);
 	map = (char **)malloc((data->size + 1) * sizeof(char *));
 	if (!map)

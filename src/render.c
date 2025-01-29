@@ -6,7 +6,7 @@
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:32:55 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/21 20:05:19 by taomalbe         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:57:58 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	mercilanorme_map(t_data *data, int i, int j)
 	}
 }
 
-void	render_map(t_data *data)
+int	render_map(t_data *data)
 {
 	int	i;
 	int	j;
@@ -60,4 +60,5 @@ void	render_map(t_data *data)
 		}
 		j++;
 	}
+	return (1);
 }

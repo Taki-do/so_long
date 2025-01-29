@@ -6,7 +6,7 @@
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 09:41:46 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/21 20:07:21 by taomalbe         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:44:57 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 # define TILE_SIZE 64
 
-enum {
+enum
+{
 	ON_KEYDOWN = 2,
 	ON_KEYUP = 3,
 	ON_MOUSEDOWN = 4,
@@ -33,17 +34,18 @@ enum {
 	ON_DESTROY = 17
 };
 
-typedef struct s_data {
+typedef struct s_data
+{
 	void	*img;
 	void	*wall_img;
 	void	*floor_img;
 	void	*player_img;
 	void	*collectible_img;
 	void	*exit_img;
-	void    *mlx;
-    void    *win;
+	void	*mlx;
+	void	*win;
 	char	*addr;
-    char    **map;
+	char	**map;
 	int		player_x;
 	int		player_y;
 	int		bits_per_pixel;
@@ -58,17 +60,16 @@ typedef struct s_data {
 	char	previous_tile;
 }	t_data;
 
-
 int		map_size(char *name);
 int		close_window(t_data *vars);
 int		findpath(t_data *data);
 int		take_input(int keycode, t_data *vars);
 int		validate_elements(char **map, t_data *data);
-
-char	**read_map(char *name, t_data *data);
+int		render_map(t_data *data);
 
 void	free_map(char **map);
 void	mlx_free(t_data *data);
-void	render_map(t_data *data);
+
+char	**read_map(char *name, t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: taomalbe <taomalbe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 11:22:49 by taomalbe          #+#    #+#             */
-/*   Updated: 2025/01/21 20:00:55 by taomalbe         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:57:54 by taomalbe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	main(int ac, char *av[])
 			return (ft_putstr_fd("Error\n", 2), mlx_free(&data), 1);
 		init_mlx(&data);
 		render_map(&data);
+		mlx_hook(data.win, 12, 1L << 15, render_map, &data);
 		mlx_hook(data.win, 02, 1L << 0, take_input, &data);
 		mlx_hook(data.win, 17, 0, close_window, &data);
 		mlx_loop(data.mlx);
